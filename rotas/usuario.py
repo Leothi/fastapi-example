@@ -8,7 +8,7 @@ router = APIRouter()
 
 # Rota na API
 # response_model é o modelo pydantic utilizado
-@router.post('/add', response_model=UserResponse, response_model_exclude="job", status_code=200, summary="Cria um novo usuário.")
+@router.post('/add', response_model=UserResponse, status_code=200, summary="Cria um novo usuário.")
 def add_user(dados_usuario: UserRequest) -> dict:
     novo_usuario = modulo_usuario.User(**dados_usuario.dict())
     atributos = novo_usuario.user_attributes()
