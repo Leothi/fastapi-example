@@ -1,0 +1,23 @@
+from fastapi import APIRouter, Query
+from loguru import logger
+
+from full_api.modelos.math import MathResponse
+from full_api.modulos import math as modulo_math
+
+
+router = APIRouter()
+
+# Rota na API
+# response_model é o modelo pydantic utilizado
+@router.get('/dobro', response_model=MathResponse, summary="Retorna o dobro do valor de entrada.")
+def dobro(valor: float = Query(..., description="Valor para ser dobrado.", example=2.0)) -> float:
+    """A partir de um valor de entrada, retorna seu dobro.
+    """
+    return {"valor": modulo_math.dobro(valor)}
+
+@router.get('/divisao', response_model=MathResponse, summary="Retorna a divisão entre 2 valores.")
+def divisao(numerador: float = Query(..., description="Numerador.", example=2.0), 
+denominador: float = Query(..., description="Denominador", example=1.0)) -> float:
+    """Realiza a divisão de 2 valores.
+    """
+    return {"valor": modulo_math.divisao(numerador, denominador)}

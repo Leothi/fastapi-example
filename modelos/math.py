@@ -1,0 +1,9 @@
+from pydantic import BaseModel, Field
+
+from full_api.modelos import RespostaSucesso
+
+
+# Validação de campos e construção do Schema no Swagger
+# ... Significa obrigatório (required)
+class MathResponse(RespostaSucesso):
+    valor: float = Field(..., description="Resultado da operação.", example=4.0)
