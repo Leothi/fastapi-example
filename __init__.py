@@ -13,7 +13,7 @@ from full_api.excecoes import APIException
 from full_api.utils.logging_utils import DEFAULT_FORMAT, log_request
 from full_api.modelos import DEFAULT_RESPONSES_JSON
 
-
+# Configuração do Logger
 logger.configure(
     handlers=[
         {
@@ -24,15 +24,18 @@ logger.configure(
     ]
 )
 
+# Criação de Levels
 logger.level('REQUEST RECEBIDA', no=38, color="<yellow>")
 logger.level('REQUEST FINALIZADA', no=39, color="<yellow>")
 logger.level('REQUEST ROTA', no=40, color="<light-green>")
 
+# Saída para arquivo logger
 logger.add("./full_api/teste.log", format=DEFAULT_FORMAT)
 
+# Instância api
 app = FastAPI(title='API de teste')
 
-
+# Rotas
 app.include_router(mensagem.router, prefix='/mensagem',
                    tags=['Mensagem'], responses={**DEFAULT_RESPONSES_JSON})
 app.include_router(math.router, prefix='/math',
@@ -76,7 +79,7 @@ async def validation_exception_handler(requisicao: Request, excecao: RequestVali
         }
     )
 
-
+# Middleware - Logging de requisições
 @app.middleware("http")
 async def add_process_time_header(request: Request, call_next):
     id = str(uuid.uuid1())
