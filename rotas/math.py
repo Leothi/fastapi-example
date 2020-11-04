@@ -1,5 +1,4 @@
 from fastapi import APIRouter, Query
-from loguru import logger
 
 from full_api.modelos.math import MathResponse
 from full_api.modulos import math as modulo_math
@@ -15,9 +14,10 @@ def dobro(valor: float = Query(..., description="Valor para ser dobrado.", examp
     """
     return {"valor": modulo_math.dobro(valor)}
 
+
 @router.get('/divisao', response_model=MathResponse, summary="Retorna a divisão entre 2 valores.")
-def divisao(numerador: float = Query(..., description="Numerador.", example=2.0), 
-denominador: float = Query(..., description="Denominador", example=1.0)) -> float:
+def divisao(numerador: float = Query(..., description="Numerador.", example=2.0),
+            denominador: float = Query(..., description="Denominador", example=1.0)) -> float:
     """Realiza a divisão de 2 valores.
     """
     return {"valor": modulo_math.divisao(numerador, denominador)}

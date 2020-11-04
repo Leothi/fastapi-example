@@ -1,6 +1,6 @@
 import sys
 import traceback
-import time 
+import time
 import uuid
 
 from fastapi import FastAPI, HTTPException, Request
@@ -17,9 +17,9 @@ from full_api.modelos import DEFAULT_RESPONSES_JSON
 logger.configure(
     handlers=[
         {
-        "sink": sys.stdout,
-        "level": 38,
-        "format": DEFAULT_FORMAT 
+            "sink": sys.stdout,
+            "level": 38,
+            "format": DEFAULT_FORMAT
         }
     ]
 )
@@ -27,7 +27,7 @@ logger.configure(
 # Criação de Levels
 logger.level('REQUEST RECEBIDA', no=38, color="<yellow>")
 logger.level('REQUEST FINALIZADA', no=39, color="<yellow>")
-logger.level('REQUEST ROTA', no=40, color="<light-green>")
+logger.level('LOG ROTA', no=40, color="<light-green>")
 
 # Saída para arquivo logger
 logger.add("./full_api/teste.log", format=DEFAULT_FORMAT)
@@ -54,8 +54,9 @@ async def http_excep(requisicao: Request, exc: HTTPException):
             "status_code": exc.status_code,
             "mensagem": mensagem[exc.status_code],
             "traceback": traceback.format_exc()
-        }        
+        }
     )
+
 
 @app.exception_handler(APIException)
 async def camara_exception_handler(requisicao: Request, excecao: APIException):
@@ -67,6 +68,7 @@ async def camara_exception_handler(requisicao: Request, excecao: APIException):
             "traceback": traceback.format_exc()
         }
     )
+
 
 @app.exception_handler(RequestValidationError)
 async def validation_exception_handler(requisicao: Request, excecao: RequestValidationError):
@@ -84,13 +86,14 @@ async def validation_exception_handler(requisicao: Request, excecao: RequestVali
 async def add_process_time_header(request: Request, call_next):
     id = str(uuid.uuid1())
 
-    log_request("REQUEST RECEBIDA", request.method, id, request.client.host, request.url.path)
+    log_request("REQUEST RECEBIDA", request.method, id,
+                request.client.host, request.url.path)
     start_time = time.time()
     response = await call_next(request)
     process_time = round(time.time() - start_time, 10)
 
-    log_request("REQUEST FINALIZADA", request.method, id, request.client.host, request.url.path, process_time)
+    log_request("REQUEST FINALIZADA", request.method, id,
+                request.client.host, request.url.path, process_time)
     response.headers["X-Process-Time"] = str("process_time")
 
     return response
- 

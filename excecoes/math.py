@@ -1,5 +1,6 @@
 from full_api.excecoes import APIException
 
+
 class DivisaoPorZeroException(APIException):
     def __init__(self):
         mensagem = "O denominador não pode ser 0."

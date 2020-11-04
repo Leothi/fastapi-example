@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field
+from pydantic import Field
 
 from full_api.modelos import RespostaSucesso
 
@@ -8,4 +8,4 @@ from full_api.modelos import RespostaSucesso
 
 class MensagemResponse(RespostaSucesso):
     mensagem_out: str = Field(...,
-                          description="Mensagem em upper case.", example="STRING")
+                              description="Mensagem em upper case.", example="STRING")

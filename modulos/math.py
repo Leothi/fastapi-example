@@ -1,3 +1,5 @@
+from loguru import logger
+
 from full_api.excecoes.math import DivisaoPorZeroException
 
 
@@ -9,10 +11,11 @@ def dobro(valor: float) -> float:
     :return: Valor dobrado.
     :rtype: float
     """
-
+    logger.log('LOG ROTA', "Calculando o dobro")
     return valor*2
 
-def divisao(numerador: float, denominador: float)-> float:
+
+def divisao(numerador: float, denominador: float) -> float:
     """Retorna o resultado da divisão.
 
     :param numerador: Numerador da fração.
@@ -22,6 +25,7 @@ def divisao(numerador: float, denominador: float)-> float:
     :return: Resultado da operação.
     :rtype: float
     """
+    logger.log('LOG ROTA', "Calculando a divisão")
     if denominador == 0:
         raise DivisaoPorZeroException
     return numerador/denominador

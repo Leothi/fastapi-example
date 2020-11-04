@@ -1,5 +1,6 @@
 from fastapi.responses import JSONResponse
 
+
 def mensagem_upper(string: str) -> str:
     """Transforma a mensagem para upper case.
 
@@ -7,7 +8,7 @@ def mensagem_upper(string: str) -> str:
     :type string: str
     :return: string em upper case.
     :rtype: str
-    """    
+    """
     if string:
         return string.upper()
     else:
