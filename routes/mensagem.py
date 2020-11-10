@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Query
 
-from full_api.modelos.mensagem import MensagemResponse
-from full_api.modulos import mensagem as modulo_mensagem
+from full_api.models.mensagem import MensagemResponse
+from full_api.modules import mensagem as modulo_mensagem
 
 
 router = APIRouter()

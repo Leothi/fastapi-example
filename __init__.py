@@ -1,39 +1,49 @@
 import sys
-import traceback
-import time
-import uuid
 
-from fastapi import FastAPI, HTTPException, Request
-from fastapi.exceptions import RequestValidationError
-from fastapi.responses import JSONResponse
+from fastapi import FastAPI
 from loguru import logger
+from starlette.middleware.cors import CORSMiddleware
 
-from full_api.rotas import mensagem, math, usuario, documentacao
-from full_api.excecoes import APIException
-from full_api.utils.logging_utils import DEFAULT_FORMAT, log_request
-from full_api.modelos import DEFAULT_RESPONSES_JSON
+from full_api.routes import mensagem, math, usuario, documentacao
+from full_api.utils.logger import DEFAULT_FORMAT
+from full_api.models import DEFAULT_RESPONSES_JSON
+from full_api.modules.middleware import Middleware
+from full_api.exceptions import ExceptionHandler
+
+__version__ = '1.0.0'
 
 # Configuração do Logger
 logger.configure(
     handlers=[
         {
             "sink": sys.stdout,
-            "level": 38,
+            "level": 10,
             "format": DEFAULT_FORMAT
         }
     ]
 )
 
 # Criação de Levels
-logger.level('REQUEST RECEBIDA', no=38, color="<yellow>")
-logger.level('REQUEST FINALIZADA', no=39, color="<yellow>")
-logger.level('LOG ROTA', no=40, color="<light-green>")
+logger.level('REQUEST RECEBIDA', no=37, color="<yellow>")
+logger.level('REQUEST FINALIZADA', no=38, color="<yellow>")
+logger.level('LOG ROTA', no=39, color="<light-green>")
 
 # Saída para arquivo logger
-logger.add("./full_api/teste.log", format=DEFAULT_FORMAT)
+logger.add("./full_api/teste.log", level=0, format=DEFAULT_FORMAT, rotation='500 MB')
+logger.add("./full_api/teste_error.log", level=40, format=DEFAULT_FORMAT, rotation='500 MB')
 
-# Instância api
-app = FastAPI(title='API de teste')
+# Instância API
+app = FastAPI(title='API de teste', description="Api para treinamento de FastAPI",
+              version=__version__)
+
+# CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Rotas
 app.include_router(mensagem.router, prefix='/mensagem',
@@ -44,56 +54,6 @@ app.include_router(usuario.router, prefix='/usuario',
                    tags=['Usuário'], responses={**DEFAULT_RESPONSES_JSON})
 app.include_router(documentacao.router)
 
-# Substituição/criação das exceptions
-@app.exception_handler(HTTPException)
-async def http_excep(requisicao: Request, exc: HTTPException):
-    mensagem = {404: "Não encontrado", 500: "Erro interno", 400: "Bad Request"}
-    return JSONResponse(
-        status_code=exc.status_code,
-        content={
-            "status_code": exc.status_code,
-            "mensagem": mensagem[exc.status_code],
-            "traceback": traceback.format_exc()
-        }
-    )
-
-
-@app.exception_handler(APIException)
-async def camara_exception_handler(requisicao: Request, excecao: APIException):
-    return JSONResponse(
-        status_code=excecao.status_code,
-        content={
-            "status": excecao.status_code,
-            "mensagem": excecao.mensagem,
-            "traceback": traceback.format_exc()
-        }
-    )
-
-
-@app.exception_handler(RequestValidationError)
-async def validation_exception_handler(requisicao: Request, excecao: RequestValidationError):
-    return JSONResponse(
-        status_code=422,
-        content={
-            "status": 422,
-            "mensagem": "Campo de requisição inválido",
-            "traceback": traceback.format_exc()
-        }
-    )
-
-# Middleware - Logging de requisições
-@app.middleware("http")
-async def add_process_time_header(request: Request, call_next):
-    id = str(uuid.uuid1())
-
-    log_request("REQUEST RECEBIDA", request.method, id,
-                request.client.host, request.url.path)
-    start_time = time.time()
-    response = await call_next(request)
-    process_time = round(time.time() - start_time, 10)
-
-    log_request("REQUEST FINALIZADA", request.method, id,
-                request.client.host, request.url.path, process_time)
-    response.headers["X-Process-Time"] = str("process_time")
-
-    return response
+# Módulos da API
+Middleware(app)
+ExceptionHandler(app)

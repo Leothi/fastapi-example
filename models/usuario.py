@@ -1,7 +1,7 @@
 from pydantic import BaseModel, Field
 from typing import Optional
 
-from full_api.modelos import RespostaSucesso
+from full_api.models import RespostaSucesso
 
 
 class UserRequest(BaseModel):

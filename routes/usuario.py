@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 
-from full_api.modelos.usuario import UserResponse, UserRequest
-from full_api.modulos import usuario as modulo_usuario
+from full_api.models.usuario import UserResponse, UserRequest
+from full_api.modules import usuario as modulo_usuario
 
 
 router = APIRouter()
