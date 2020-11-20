@@ -8,7 +8,6 @@ class EnvironmentVariables(BaseSettings):
     # FastAPI
     FASTAPI_HOST: str = '0.0.0.0'
     FASTAPI_PORT: int = 8080
-    FASTAPI_DEBUG: bool = False
     FASTAPI_RELOAD: bool = False
     FASTAPI_ACCESS_LOG: bool = False
 
@@ -20,7 +19,7 @@ class EnvironmentVariables(BaseSettings):
     LOGGER_SWAGGER: bool = False
     LOGGER_IGNORE: str = '/docs /redoc /openapi.json /metrics /health /favicon.ico /'
     LOGURU_FORMAT: str = DEFAULT_FORMAT
-    LOG_LOCAL: bool = True
+    LOG_LOCAL: bool = False
 
 
 envs = EnvironmentVariables()

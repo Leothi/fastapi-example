@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/code
+    environment:
+      GUNICORN_RELOAD: "False"
+      LOG_LOCAL: "True" # Desabilita logging externo de IP, id
+      LOGGER_SWAGGER: "False" # Desabilita logging para /docs /favicon etc
+      # Apenas para uvicorn
+      LC_ALL: "C.UTF-8"
+      LANG: "C.UTF-8"
+      FASTAPI_RELOAD: "True"
+    # command: /bin/sh ./run.sh # Uvicorn sh - funciona reload
+    # command: ["python3", "-m", "full_api"] # Uvicorn python
+    ports:
+      - 8080:8080
+    networks:
+      - backend
+    
+
+networks:
+  backend:
+    driver: bridge
