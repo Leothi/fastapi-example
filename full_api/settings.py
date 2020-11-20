@@ -1,6 +1,7 @@
 import os
 
 from pydantic import BaseSettings
+from full_api.utils.logger import DEFAULT_FORMAT
 
 
 class EnvironmentVariables(BaseSettings):
@@ -18,6 +19,8 @@ class EnvironmentVariables(BaseSettings):
     # Logger
     LOGGER_SWAGGER: bool = False
     LOGGER_IGNORE: str = '/docs /redoc /openapi.json /metrics /health /favicon.ico /'
+    LOGURU_FORMAT: str = DEFAULT_FORMAT
+    LOG_LOCAL: bool = True
 
 
 envs = EnvironmentVariables()

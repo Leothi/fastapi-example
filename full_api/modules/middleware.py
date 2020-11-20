@@ -15,17 +15,18 @@ class Middleware:
 
     @staticmethod
     async def middleware_main(request: Request, callnext):
+        local = envs.LOG_LOCAL
         id = str(uuid.uuid1())
         ip, method, path = request.client.host, request.method, request.url.path
 
         if not envs.LOGGER_SWAGGER and path in envs.LOGGER_IGNORE:
             return await callnext(request)
 
-        log_request("REQUEST RECEBIDA", method, id, ip, path)
+        log_request("REQUEST RECEBIDA", method, id, ip, path, None, local)
         start_time = perf_counter()
         response = await callnext(request)
         process_time = f'{perf_counter() - start_time:.4f}'
-        log_request("REQUEST FINALIZADA", method, id, ip, path, process_time)
+        log_request("REQUEST FINALIZADA", method, id, ip, path, process_time, local)
 
         response.headers["X-Process-Time"] = process_time
         return response
