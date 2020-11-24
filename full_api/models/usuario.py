@@ -4,8 +4,7 @@ from typing import Optional
 from full_api.models import RespostaSucesso
 
 
-class UserRequest(BaseModel):
-    id_: int = Field(..., description="Identificador do usuário", example=1)
+class UserBase(BaseModel):
     name: str = Field(..., description="Nome do usuário", example="Fulano")
     job: Optional[str] = Field(
         "", description="Trabalho do usuário", example="Pedreiro")
@@ -15,11 +14,13 @@ class UserRequest(BaseModel):
 
 # Dessa forma a saída da API não exibe a senha
 class UserPassword(BaseModel):
-    id_: int = Field(..., description="Identificador do usuário", example=1)
     name: str = Field(..., description="Nome do usuário", example="Fulano")
     job: Optional[str] = Field("", description="Trabalho do usuário",
                                example="Pedreiro")
 
 
-class UserResponse(RespostaSucesso):
+class UserInsertResponse(RespostaSucesso):
+    id: str = Field(..., description="Id da inserção no banco", example=" 5fbd697275d61b32f5e503b5", alias='_id')
+
+class UserSearchResponse(RespostaSucesso):
     usuario: UserPassword

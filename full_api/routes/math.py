@@ -10,7 +10,7 @@ router = APIRouter()
 # Rota na API
 # response_model é o modelo pydantic utilizado
 @router.get('/dobro', response_model=MathResponse, summary="Retorna o dobro do valor de entrada.")
-def dobro(valor: float = Query(..., description="Valor para ser dobrado.", example=2.0)) -> float:
+def router_dobro(valor: float = Query(..., description="Valor para ser dobrado.", example=2.0)) -> float:
     """A partir de um valor de entrada, retorna seu dobro.
     """
     logger.log('LOG ROTA', "Calculando o dobro")
@@ -18,7 +18,7 @@ def dobro(valor: float = Query(..., description="Valor para ser dobrado.", examp
 
 
 @router.get('/divisao', response_model=MathResponse, summary="Retorna a divisão entre 2 valores.")
-def divisao(numerador: float = Query(..., description="Numerador.", example=2.0),
+def router_divisao(numerador: float = Query(..., description="Numerador.", example=2.0),
             denominador: float = Query(..., description="Denominador", example=1.0)) -> float:
     """Realiza a divisão de 2 valores.
     """

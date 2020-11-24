@@ -1,12 +1,13 @@
-class User():
-    """Classe de teste para métodos POST de criação de usuários
-    """
+from full_api.database.usuario import UsuarioDatabase
 
-    def __init__(self, id_: int, name: str, job: str = "", password: str = "swordfish"):
-        self.id_ = id_
-        self.name = name
-        self.job = job
-        self.password = password
 
-    def user_attributes(self) -> dict:
-        return self.__dict__
+def search(insertion_id: str):
+    with UsuarioDatabase() as db:
+        result = db.search(insertion_id)
+    return result
+
+def insert(name: str, job: str, password: str):
+    with UsuarioDatabase() as db:
+        insertion_id = db.insert(name, job, password)
+
+    return insertion_id
