@@ -11,9 +11,9 @@ DEFAULT_FORMAT = ' '.join([time, level, function, message])
 
 # Função para Logging com mudanças acima
 def log_request(level: str, method: str, id: str, ip: str, endpoint: str, tempo: str = None, local: bool = False):
-    message = f"{method: ^4} | ENDPOINT: {endpoint: ^20}|"
+    message = f"{method: ^4} | ENDPOINT: {endpoint: ^55}|"
     if not local:
-        message = f"{method: ^4} | ID: {id: <36} | IP: {ip: ^16} | ENDPOINT: {endpoint: ^20}|"
+        message = f"{method: ^4} | ID: {id: <36} | IP: {ip: ^16} | ENDPOINT: {endpoint: ^55}|"
     if tempo:
         message += f" TEMPO: {tempo}"
     logger.log(level, message)

@@ -13,11 +13,11 @@ class Middleware:
     def __init__(self, app: FastAPI):
         app.middleware('http')(self.middleware_main)
 
-    @staticmethod
-    async def middleware_main(request: Request, callnext):
+    @classmethod
+    async def middleware_main(cls, request: Request, callnext):
         local = envs.LOG_LOCAL
         id = str(uuid.uuid1())
-        ip, method, path = request.client.host, request.method, request.url.path
+        ip, method, path = request.client.host, request.method, cls._get_url_route(request)
 
         if not envs.LOGGER_SWAGGER and path in envs.LOGGER_IGNORE:
             return await callnext(request)
@@ -30,3 +30,11 @@ class Middleware:
 
         response.headers["X-Process-Time"] = process_time
         return response
+
+
+    @staticmethod
+    def _get_url_route(request: Request) -> str:
+            try:
+                return [route for route in request.scope['router'].routes if route.endpoint == request.scope['endpoint']][0].path
+            except KeyError:
+                return request.url.path
