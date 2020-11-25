@@ -1,7 +1,8 @@
 from datetime import datetime
 
-from full_api.database.base import MongoDatabase
+from full_api.database import MongoDatabase
 from full_api.settings import envs
+
 
 class UsuarioDatabase(MongoDatabase):
     def __init__(self):
@@ -14,8 +15,8 @@ class UsuarioDatabase(MongoDatabase):
         if result:
             result = self.objectid_dict_to_str(result)
         return result
-    
-    def insert(self, name: str, job: str, password: str):        
+
+    def insert(self, name: str, job: str, password: str):
         document = {
             "name": name,
             "job": job,

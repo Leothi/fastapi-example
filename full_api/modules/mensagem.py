@@ -1,3 +1,5 @@
+from loguru import logger
+
 from fastapi.responses import JSONResponse
 
 
@@ -9,6 +11,7 @@ def mensagem_upper(string: str) -> str:
     :return: string em upper case.
     :rtype: str
     """
+    logger.info("Transformando mensagem para upper string")
     if string:
         return string.upper()
     else:

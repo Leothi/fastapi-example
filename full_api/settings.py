@@ -15,7 +15,7 @@ class EnvironmentVariables(BaseSettings):
     MONGODB_URI: str = 'mongodb://root:toor@mongodb:27017/'
     MONGODB_DATABASE: str = 'test-database'
     COLLECTION_USER: str = 'usuario'
-    
+
     # Logger
     LOGGER_SWAGGER: bool = False
     LOGGER_IGNORE: str = '/docs /redoc /openapi.json /metrics /health /favicon.ico /'

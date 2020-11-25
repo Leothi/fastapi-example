@@ -1,9 +1,9 @@
 from loguru import logger
+
 from fastapi import APIRouter, Query
 
 from full_api.models.math import MathResponse
 from full_api.modules import math as modulo_math
-
 
 router = APIRouter()
 
@@ -19,7 +19,7 @@ def router_dobro(valor: float = Query(..., description="Valor para ser dobrado."
 
 @router.get('/divisao', response_model=MathResponse, summary="Retorna a divisão entre 2 valores.")
 def router_divisao(numerador: float = Query(..., description="Numerador.", example=2.0),
-            denominador: float = Query(..., description="Denominador", example=1.0)) -> float:
+                   denominador: float = Query(..., description="Denominador", example=1.0)) -> float:
     """Realiza a divisão de 2 valores.
     """
     logger.log('LOG ROTA', "Calculando a divisão")

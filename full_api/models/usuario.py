@@ -22,5 +22,6 @@ class UserPassword(BaseModel):
 class UserInsertResponse(RespostaSucesso):
     id: str = Field(..., description="Id da inserção no banco", example=" 5fbd697275d61b32f5e503b5", alias='_id')
 
+
 class UserSearchResponse(RespostaSucesso):
     usuario: UserPassword
