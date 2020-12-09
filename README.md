@@ -9,7 +9,7 @@ Para entendimento da biblioteca e treinamento de suas features.
 * Aplicação roda em `0.0.0.0:8080/`por padrão;
 * Verificar a documentação (rota `/` ou `/index.html`) ou Swagger (rota `/docs`).
 
-# Algumas ferramentas utilizadas
+# Algumas ferramentas utilizadas na construção
 * Docker
 * Docker-compose
 * MongoDB
