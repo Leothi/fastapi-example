@@ -1,6 +1,7 @@
 import sys
 
 from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
 from loguru import logger
 from starlette.middleware.cors import CORSMiddleware
 
@@ -52,7 +53,13 @@ app.include_router(math.router, prefix='/math',
                    tags=['Matemática'], responses={**DEFAULT_RESPONSES_JSON})
 app.include_router(usuario.router, prefix='/usuario',
                    tags=['Usuário'], responses={**DEFAULT_RESPONSES_JSON})
+
+# Documentação
 app.include_router(documentacao.router)
+app.mount("/_static", StaticFiles(directory="./doc_sphinx/_build/html/_static"), name="static")
+app.mount("/pages", StaticFiles(directory="./doc_sphinx/_build/html/pages"), name="pages")
+# app.mount("/_images", StaticFiles(directory="./doc_sphinx/_build/html/_images"), name="images")
+# app.mount("/_sources", StaticFiles(directory="./doc_sphinx/_build/html/_sources"), name="sources")
 
 # Módulos da API
 Middleware(app)

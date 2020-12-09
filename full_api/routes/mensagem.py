@@ -1,4 +1,5 @@
 from fastapi import APIRouter, Query
+from loguru import logger
 
 from full_api.models.mensagem import MensagemResponse
 from full_api.modules import mensagem as modulo_mensagem
@@ -12,4 +13,5 @@ router = APIRouter()
 def router_upper(mensagem: str = Query(..., description="Mensagem que será passada para upper case.", example="string")) -> str:
     """A partir de uma string de entrada, transforma para upper case.
     """
+    logger.log('LOG ROTA', "Chamada rota /upper")
     return {"mensagem_out": modulo_mensagem.mensagem_upper(mensagem)}

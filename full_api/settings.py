@@ -18,7 +18,7 @@ class EnvironmentVariables(BaseSettings):
 
     # Logger
     LOGGER_SWAGGER: bool = False
-    LOGGER_IGNORE: str = '/docs /redoc /openapi.json /metrics /health /favicon.ico /'
+    LOGGER_IGNORE: str = '/docs /redoc /openapi.json /metrics /health /favicon.ico / /# /_static/perfil_ico.png /_static/perfil.png /_static/language_data.js /index.html'
     LOGURU_FORMAT: str = DEFAULT_FORMAT
     LOG_LOCAL: bool = False
 
