@@ -7,19 +7,33 @@ from full_api.settings import envs
 
 
 class MongoDatabase:
+    """Classe base para banco de dados MongoDB
+    """    
     _database: Database
     _collection: Collection
 
     def __init__(self, collection: str = None):
+        """Conexão com o banco
+
+        :param collection: Coleção do banco, defaults to None
+        :type collection: str, optional
+        """        
         self.client = MongoClient(envs.MONGODB_URI)  # Conexão com o mongo
         self.db = self.client[envs.MONGODB_DATABASE]  # Conexão com o banco de dados
         if collection:
             self.collection = self.db[collection]  # Conexão com a tabela
 
-    def test_connection(self, collection=None):
+    def test_connection(self, collection: str = None):
+        """Testa a conexão com o banco.
+
+        :param collection: Coleção do banco, defaults to None
+        :type collection: str, optional
+        """        
         self.client.server_info(collection)
 
     def close(self):
+        """Fecha a conexão com o banco.
+        """        
         self.client.close()
 
     @classmethod
