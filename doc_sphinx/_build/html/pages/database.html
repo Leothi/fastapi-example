@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Outra seção &mdash; Guará Alcateia</title>
+  <title>Database &mdash; Guará Alcateia</title>
   
 
   
@@ -36,7 +36,8 @@
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="Guará Alcateia" href="../index.html"/>
-        <link rel="prev" title="Database" href="database.html"/> 
+        <link rel="next" title="Outra seção" href="outra.html"/>
+        <link rel="prev" title="Módulos" href="modulos.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -85,21 +86,21 @@
             
             
                 <p class="caption"><span class="caption-text">Documentação API</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="modulos.html">Módulos</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="modulos.html#math">Math</a></li>
 <li class="toctree-l2"><a class="reference internal" href="modulos.html#mensagem">Mensagem</a></li>
 <li class="toctree-l2"><a class="reference internal" href="modulos.html#usuario">Usuário</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="database.html">Database</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="database.html#module-full_api.database.usuario">Usuário</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Database</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-full_api.database.usuario">Usuário</a></li>
 </ul>
 </li>
 </ul>
 <p class="caption"><span class="caption-text">Outra seção</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Outra seção</a></li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="outra.html">Outra seção</a></li>
 </ul>
 
             
@@ -130,11 +131,11 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../index.html">Docs</a> &raquo;</li>
       
-    <li>Outra seção</li>
+    <li>Database</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/pages/outra.md.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/pages/database.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -144,9 +145,60 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="outra-secao">
-<h1>Outra seção<a class="headerlink" href="#outra-secao" title="Permalink to this headline">¶</a></h1>
-<p>Conteúdo da outra seção.</p>
+  <div class="section" id="database">
+<h1>Database<a class="headerlink" href="#database" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-full_api.database.usuario">
+<span id="usuario"></span><h2>Usuário<a class="headerlink" href="#module-full_api.database.usuario" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="full_api.database.usuario.UsuarioDatabase">
+<em class="property">class </em><code class="sig-prename descclassname">full_api.database.usuario.</code><code class="sig-name descname">UsuarioDatabase</code><a class="headerlink" href="#full_api.database.usuario.UsuarioDatabase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Classe banco de dados para Usuário</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>MongoDatabase</strong> (<em>class</em>) – Classe base do banco.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="full_api.database.usuario.UsuarioDatabase.insert">
+<code class="sig-name descname">insert</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">job</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">password</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#full_api.database.usuario.UsuarioDatabase.insert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Insere um usuário no banco de dados.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – Nome do usuário.</p></li>
+<li><p><strong>job</strong> (<em>str</em>) – Emprego do usuário.</p></li>
+<li><p><strong>password</strong> (<em>str</em>) – Senha do usuário.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Id da operação no banco.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="full_api.database.usuario.UsuarioDatabase.search">
+<code class="sig-name descname">search</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">id</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; dict<a class="headerlink" href="#full_api.database.usuario.UsuarioDatabase.search" title="Permalink to this definition">¶</a></dt>
+<dd><p>Busca um usuário no banco.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>id</strong> (<em>str</em>) – Id da operação no banco de dados.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Dicionário contendo resultado da busca.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
 </div>
 
 
@@ -156,8 +208,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
+        <a href="outra.html" class="btn btn-neutral float-right" title="Outra seção" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
-        <a href="database.html" class="btn btn-neutral" title="Database" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+        <a href="modulos.html" class="btn btn-neutral" title="Módulos" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

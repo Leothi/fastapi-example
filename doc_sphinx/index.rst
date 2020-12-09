@@ -21,6 +21,7 @@ Exemplo de seções
    :caption: Documentação API
 
    /pages/modulos
+   /pages/database
 
 .. toctree::
    :maxdepth: 3
