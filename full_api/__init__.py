@@ -7,7 +7,7 @@ from starlette.middleware.cors import CORSMiddleware
 
 from full_api.routes import mensagem, math, usuario, documentacao
 from full_api.models import DEFAULT_RESPONSES_JSON
-from full_api.modules.middleware import Middleware
+from full_api.modules.default.middleware import Middleware
 from full_api.exceptions import ExceptionHandler
 from full_api.settings import envs
 

@@ -14,28 +14,19 @@ class RespostaSucesso(BaseModel):
 
 class RespostaErro(BaseModel):
     status: int = Field(..., description="Código da mensagem")
-    message: str = Field(..., description="Detalhes da mensagem")
-    stacktrace: Optional[str] = Field("", description="Stacktrace do erro")
+    message: str = Field(..., description="Descrição da mensagem")
+    details: str = Field(None, description="Detalhes da mensagem")
 
 
 # Mensagens de erro padronizadas
 DEFAULT_RESPONSES = [
-    RespostaErro(status=422,
-                 message="Parâmetros da requisição inválidos!",
-                 stacktrace="Traceback (most recent call last): ..."),
-    RespostaErro(status=500,
-                 message="Erro interno!",
-                 stacktrace="Traceback (most recent call last): ..."),
-    RespostaErro(status=404,
-                 message="Não encontrado",
-                 stacktrace="Traceback (most recent call last): ..."),
-    RespostaErro(status=400,
-                 message="Bad Request",
-                 stacktrace="Traceback (most recent call last): ..."),
+    RespostaErro(status=422, message="Parâmetros da requisição inválidos!", details="1 validation error for Request..."),
+    RespostaErro(status=500, message="Erro interno!"),
+    RespostaErro(status=404, message="Não encontrado"),
+    RespostaErro(status=400, message="Bad Request"),
 ]
 
 # Para criação de respostas personalizadas
-
 
 def parse_openapi(responses: list = list()) -> dict:
     responses.extend(DEFAULT_RESPONSES)

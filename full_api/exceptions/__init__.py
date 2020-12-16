@@ -21,19 +21,28 @@ class APIException(Exception):
 class ExceptionHandler:
 
     def __init__(self, app: FastAPI):
+        app.exception_handler(Exception)(self.exception_handler)
         app.exception_handler(HTTPException)(self.http_excep)
         app.exception_handler(APIException)(self.camara_exception_handler)
         app.exception_handler(RequestValidationError)(self.validation_exception_handler)
 
     @staticmethod
-    async def http_excep(requisicao: Request, exc: HTTPException):
+    async def exception_handler(request: Request, excecao: Exception):
+        return JSONResponse(
+            status_code=500, content={
+                "status": 500,
+                "mensagem": 'Internal Server Error'
+                }
+            )
+    
+    @staticmethod
+    async def http_excep(requisicao: Request, excecao: HTTPException):
         mensagem = {404: "Não encontrado", 500: "Erro interno", 400: "Bad Request"}
         return JSONResponse(
-            status_code=exc.status_code,
+            status_code=excecao.status_code,
             content={
-                "status_code": exc.status_code,
-                "mensagem": mensagem[exc.status_code],
-                "traceback": traceback.format_exc()
+                "status": excecao.status_code,
+                "mensagem": mensagem[excecao.status_code]
             }
         )
 
@@ -43,8 +52,7 @@ class ExceptionHandler:
             status_code=excecao.status_code,
             content={
                 "status": excecao.status_code,
-                "mensagem": excecao.mensagem,
-                "traceback": traceback.format_exc()
+                "mensagem": excecao.mensagem
             }
         )
 
@@ -54,7 +62,7 @@ class ExceptionHandler:
             status_code=422,
             content={
                 "status": 422,
-                "mensagem": "Campo de requisição inválido",
-                "traceback": traceback.format_exc()
+                "mensagem": "Parâmetros da requisição inválidos!",
+                "details": str(excecao)
             }
         )

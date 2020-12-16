@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from full_api.database import MongoDatabase
+from full_api.database.default.mongo_base import MongoDatabase
 from full_api.settings import envs
 
 
