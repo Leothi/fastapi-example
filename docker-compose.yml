@@ -4,7 +4,7 @@ services:
 
   api:
     build:
-      context: .
+      context: ./full_api
       dockerfile: Dockerfile
     volumes:
       - .:/code
@@ -17,18 +17,18 @@ services:
       LANG: "C.UTF-8"
       FASTAPI_RELOAD: "True"
     command: /bin/sh ./run.sh # Uvicorn sh - funciona reload
-    # command: ["python3", "-m", "full_api"] # Uvicorn python
+    # command: ["python3", "-m", "full_api.api"] # Uvicorn python
     ports:
       - 8080:8080
     networks:
       - backend
 
   mongodb:
-    container_name: full_api-mongodb
+    container_name: full_api.api-mongodb
     image: mongo
     restart: unless-stopped
     volumes:
-      - full_api-mongodb_volume:/data/db
+      - full_api.api-mongodb_volume:/data/db
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: toor
@@ -41,7 +41,7 @@ services:
       driver: "none"
   
   mongo-express:
-    container_name: full_api-mongo_express
+    container_name: full_api.api-mongo_express
     image: mongo-express
     restart: unless-stopped
     ports:
@@ -62,4 +62,4 @@ networks:
   backend:
     driver: bridge
 volumes:
-  full_api-mongodb_volume:
+  full_api.api-mongodb_volume:

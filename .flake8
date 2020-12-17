@@ -1,4 +1,3 @@
 [flake8]
 exclude = .git, __pycache__, dataset
 max-line-length = 140
-ignore = E402, F403
