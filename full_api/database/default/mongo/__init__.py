@@ -8,7 +8,7 @@ from full_api.settings import envs
 
 class MongoDatabase:
     """Classe base para banco de dados MongoDB
-    """    
+    """
     _database: Database
     _collection: Collection
 
@@ -17,7 +17,7 @@ class MongoDatabase:
 
         :param collection: Coleção do banco, defaults to None
         :type collection: str, optional
-        """        
+        """
         self.client = MongoClient(envs.MONGODB_URI)  # Conexão com o mongo
         self.db = self.client[envs.MONGODB_DATABASE]  # Conexão com o banco de dados
         if collection:
@@ -28,12 +28,12 @@ class MongoDatabase:
 
         :param collection: Coleção do banco, defaults to None
         :type collection: str, optional
-        """        
+        """
         self.client.server_info(collection)
 
     def close(self):
         """Fecha a conexão com o banco.
-        """        
+        """
         self.client.close()
 
     @classmethod

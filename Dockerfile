@@ -8,9 +8,8 @@ RUN apt-get update && apt-get install -y \
     python3-setuptools \
     && rm -rf /var/lib/apt/lists/*
 
-COPY requirements.txt /code
-RUN pip3 install --no-cache-dir -r requirements.txt
-
 COPY . /code
+
+RUN pip3 install .
 
 CMD ["gunicorn", "-k", "uvicorn.workers.UvicornWorker", "-c", "full_api/settings.py", "full_api:app"]
