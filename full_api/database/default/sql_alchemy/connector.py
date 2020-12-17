@@ -1,19 +1,20 @@
-from full_api.database.default.sql_alchemy import Session
+from full_api.database import Session
+
 
 class Connector:
     _session = _query = None
-    
+
     @property
     def session(self):
         return self._session
-    
+
     @property
     def query(self):
         return self._query
-    
+
     def commit(self):
         self.session.commit()
-        
+
     def flush(self):
         self.session.flush()
 

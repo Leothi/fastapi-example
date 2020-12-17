@@ -55,7 +55,7 @@ class MongoDatabase:
     def str_to_objectid(cls, id: str) -> ObjectId:
         return ObjectId(id)
 
-    def __enter__(self) -> 'BaseDatabase':
+    def __enter__(self) -> 'MongoDatabase':
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):

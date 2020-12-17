@@ -8,6 +8,8 @@ router = APIRouter()
 
 # Rota na API
 # response_model é o modelo pydantic utilizado
+
+
 @router.get('/dobro', response_model=MathResponse, summary="Retorna o dobro do valor de entrada.")
 def router_dobro(valor: float = Query(..., description="Valor para ser dobrado.", example=2.0)) -> float:
     """A partir de um valor de entrada, retorna seu dobro.

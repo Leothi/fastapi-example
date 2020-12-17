@@ -25,7 +25,7 @@ logger.configure(
 )
 
 # Criação de Levels
-logger.level('REQUEST RECEBIDA', no=37,  color="<yellow>")
+logger.level('REQUEST RECEBIDA', no=37, color="<yellow>")
 logger.level('REQUEST FINALIZADA', no=38, color="<yellow>")
 logger.level('LOG ROTA', no=39, color="<light-green>")
 

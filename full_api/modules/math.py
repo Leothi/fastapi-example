@@ -12,7 +12,7 @@ def dobro(valor: float) -> float:
     :rtype: float
     """
     logger.info("Calculando dobro do valor de entrada")
-    return valor*2
+    return valor * 2
 
 
 def divisao(numerador: float, denominador: float) -> float:
@@ -28,4 +28,4 @@ def divisao(numerador: float, denominador: float) -> float:
     logger.info("Calculando a divisão dos valores de entrada")
     if denominador == 0:
         raise DivisaoPorZeroException
-    return numerador/denominador
+    return numerador / denominador

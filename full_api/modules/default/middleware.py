@@ -29,4 +29,3 @@ class Middleware:
 
         response.headers["X-Process-Time"] = process_time
         return response
-

@@ -1,9 +1,7 @@
 from pydantic import BaseModel, Field
-from typing import Optional
+
 
 # Modelo para mensagem de sucesso genérica padrão
-
-
 class SuccessResponse(BaseModel):
     mensagem = "Processado com sucesso."
     mensagem: str = Field(mensagem,
@@ -27,6 +25,7 @@ DEFAULT_RESPONSES = [
 ]
 
 # Para criação de respostas personalizadas
+
 
 def parse_openapi(responses: list = list()) -> dict:
     responses.extend(DEFAULT_RESPONSES)

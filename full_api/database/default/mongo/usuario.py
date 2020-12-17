@@ -1,12 +1,7 @@
 from datetime import datetime
 
-from sqlalchemy import String, Column, Integer, VARCHAR
-
 from full_api.database.default.mongo import MongoDatabase
-from full_api.database.default.sql_alchemy import Declarative_base
-from full_api.database.default.sql_alchemy.base import SQLBaseModel
 from full_api.settings import envs
-
 
 
 class UsuarioMongoDatabase(MongoDatabase):
@@ -14,7 +9,8 @@ class UsuarioMongoDatabase(MongoDatabase):
 
     :param MongoDatabase: Classe base do banco.
     :type MongoDatabase: class
-    """    
+    """
+
     def __init__(self):
         super().__init__(envs.COLLECTION_USER)
 
@@ -42,7 +38,7 @@ class UsuarioMongoDatabase(MongoDatabase):
         :type password: str
         :return: Id da operação no banco.
         :rtype: str
-        """        
+        """
         document = {
             "name": name,
             "job": job,
@@ -52,12 +48,3 @@ class UsuarioMongoDatabase(MongoDatabase):
         }
         result = self.collection.insert_one(document)
         return self.objectid_to_str(result.inserted_id)
-
-
-class UsuarioSQLDatabase(Declarative_base, SQLBaseModel):
-    __tablename__ = "USUARIO"
-
-    ID = Column(Integer, primary_key=True)
-    NAME = Column(VARCHAR, nullable=False)
-    JOB = Column(String(32), nullable=False)
-    PW = Column(String(32))

@@ -15,13 +15,13 @@ class EnvironmentVariables(BaseSettings):
     MONGODB_URI: str = 'mongodb://root:toor@mongodb:27017/'
     MONGODB_DATABASE: str = 'test-database'
     COLLECTION_USER: str = 'usuario'
-    
+
     # SQLAlchemy
     SQL_URI: str = 'sqlite:///foo.db'
-    
+
     # Logger
     LOGGER_SWAGGER: bool = False
-    LOGGER_IGNORE: str = '/docs /redoc /openapi.json /metrics /health /favicon.ico / /# /_static/perfil_ico.png /_static/perfil.png /_static/language_data.js /index.html'
+    LOGGER_IGNORE: str = '/docs /redoc /openapi.json /metrics /health /favicon.ico / /# /_static/perfil_ico.png /_static/perfil.png'
     LOGURU_FORMAT: str = DEFAULT_FORMAT
     LOG_LOCAL: bool = False
 

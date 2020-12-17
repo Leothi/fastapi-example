@@ -1,5 +1,3 @@
-import traceback
-
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from fastapi.exceptions import RequestValidationError
@@ -32,9 +30,9 @@ class ExceptionHandler:
             status_code=500, content={
                 "status": 500,
                 "mensagem": 'Internal Server Error'
-                }
-            )
-    
+            }
+        )
+
     @staticmethod
     async def http_excep(requisicao: Request, excecao: HTTPException):
         mensagem = {404: "Não encontrado", 500: "Erro interno", 400: "Bad Request"}
