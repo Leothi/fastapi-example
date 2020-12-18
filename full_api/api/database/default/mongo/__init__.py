@@ -32,8 +32,7 @@ class MongoDatabase:
         self.client.server_info(collection)
 
     def close(self):
-        """Fecha a conexão com o banco.
-        """
+        """Fecha a conexão com o banco. """
         self.client.close()
 
     @classmethod

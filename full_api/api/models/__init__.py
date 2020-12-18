@@ -3,6 +3,7 @@ from pydantic import BaseModel, Field
 
 # Modelo para mensagem de sucesso genérica padrão
 class SuccessResponse(BaseModel):
+    """Base model de Resposta de sucesso"""
     mensagem = "Processado com sucesso."
     mensagem: str = Field(mensagem,
                           example=mensagem)
@@ -11,6 +12,7 @@ class SuccessResponse(BaseModel):
 
 
 class ErrorResponse(BaseModel):
+    """Base model de Resposta de Erro"""
     status: int = Field(..., description="Código da mensagem")
     message: str = Field(..., description="Descrição da mensagem")
     details: str = Field(None, description="Detalhes da mensagem")

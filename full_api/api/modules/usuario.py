@@ -5,6 +5,24 @@ from full_api.api.database.default.mongo.usuario import UsuarioMongoDatabase
 from full_api.api.database.default.sql_alchemy.usuario import UsuarioSQLDatabase
 
 
+def list_(skip: int = 0, limit: int = None, count: bool = False):
+    """Lista todos os documentos do banco.
+
+    :param skip: Valor inicial, defaults to 0
+    :type skip: int, optional
+    :param limit: Valor final, defaults to None
+    :type limit: int, optional
+    :param count: Contagem de todos os documentos, defaults to False
+    :type count: bool, optional
+    :return: Contagem de todas as inserções ou as inserções em si
+    :rtype: int ou list
+    """    
+    with UsuarioMongoDatabase() as db:
+        logger.info("Realizando listagem do banco de dados.")
+        result = db.list_(skip, limit, count)
+    return result
+
+
 def search(insertion_id: str) -> dict:
     """Realiza busca no banco de dados a partir do id de inserção.
 

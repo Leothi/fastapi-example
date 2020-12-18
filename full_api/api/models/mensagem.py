@@ -7,5 +7,6 @@ from full_api.api.models import SuccessResponse
 
 
 class MensagemResponse(SuccessResponse):
+    """Response model to /mensagem"""
     mensagem_out: str = Field(...,
                               description="Mensagem em upper case.", example="STRING")
