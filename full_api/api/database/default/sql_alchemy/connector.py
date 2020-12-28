@@ -1,4 +1,4 @@
-from full_api.api.database import Session
+from api.database import Session
 
 
 class Connector:

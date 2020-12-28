@@ -5,7 +5,7 @@ from fastapi.templating import Jinja2Templates
 router = APIRouter()
 
 # Para criação de endpoints com frontend
-templates = Jinja2Templates(directory="full_api/doc_sphinx/_build/html")
+templates = Jinja2Templates(directory="doc_sphinx/_build/html")
 
 
 @router.get("/", response_class=HTMLResponse, include_in_schema=False)

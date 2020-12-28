@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Query
 from loguru import logger
 
-from full_api.api.models.math import MathResponse
-from full_api.api.modules import math as modulo_math
+from api.models.math import MathResponse
+from api.modules import math as modulo_math
 
 router = APIRouter()
 

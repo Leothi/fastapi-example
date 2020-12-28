@@ -16,8 +16,8 @@ services:
       LC_ALL: "C.UTF-8"
       LANG: "C.UTF-8"
       FASTAPI_RELOAD: "True"
-    command: /bin/sh ./run.sh # Uvicorn sh - funciona reload
-    # command: ["python3", "-m", "full_api.api"] # Uvicorn python
+    # command: /bin/sh full_api/run_uvicorn.sh # Uvicorn sh - funciona reload
+    command: ["python3", "-m", "full_api.api"] # Uvicorn python
     ports:
       - 8080:8080
     networks:

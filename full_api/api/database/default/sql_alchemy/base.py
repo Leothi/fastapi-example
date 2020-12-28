@@ -1,7 +1,7 @@
 from typing import List, Optional
 
-from full_api.api.database.default.sql_alchemy.connector import Connector
-from full_api.api.database import Declarative_base
+from api.database.default.sql_alchemy.connector import Connector
+from api.database import Declarative_base
 
 
 class SQLBaseModel:

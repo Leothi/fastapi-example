@@ -1,4 +1,4 @@
-from full_api.api.exceptions import APIException
+from api.exceptions import APIException
 
 
 class DivisaoPorZeroException(APIException):

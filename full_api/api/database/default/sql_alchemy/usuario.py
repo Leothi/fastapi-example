@@ -1,7 +1,7 @@
 from sqlalchemy import String, Column, Integer, VARCHAR
 
-from full_api.api.database import Declarative_base
-from full_api.api.database.default.sql_alchemy.base import SQLBaseModel
+from api.database import Declarative_base
+from api.database.default.sql_alchemy.base import SQLBaseModel
 
 
 class UsuarioSQLDatabase(Declarative_base, SQLBaseModel):

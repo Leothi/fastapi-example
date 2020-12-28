@@ -1,6 +1,6 @@
 from pydantic import Field
 
-from full_api.api.models import SuccessResponse
+from api.models import SuccessResponse
 
 # Validação (de json) de campos e construção do Schema no Swagger
 # ... Significa obrigatório (required)

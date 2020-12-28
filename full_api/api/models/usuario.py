@@ -1,7 +1,7 @@
 from pydantic import BaseModel, Field
 from typing import Optional, List, Union, Dict
 
-from full_api.api.models import SuccessResponse
+from api.models import SuccessResponse
 
 
 class UserBase(BaseModel):

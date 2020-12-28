@@ -1,1 +1,1 @@
-from full_api.api.database.default.sql_alchemy.usuario import UsuarioSQLDatabase # noqa
+from api.database.default.sql_alchemy.usuario import UsuarioSQLDatabase # noqa

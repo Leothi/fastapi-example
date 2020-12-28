@@ -1,8 +1,8 @@
 from datetime import datetime
 from typing import Union, List
 
-from full_api.api.database.default.mongo import MongoDatabase
-from full_api.api.settings import envs
+from api.database.default.mongo import MongoDatabase
+from api.settings import envs
 
 
 class UsuarioMongoDatabase(MongoDatabase):

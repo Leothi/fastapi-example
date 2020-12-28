@@ -3,7 +3,7 @@ from pymongo import MongoClient
 from pymongo.collection import Collection
 from pymongo.database import Database
 
-from full_api.api.settings import envs
+from api.settings import envs
 
 
 class MongoDatabase:

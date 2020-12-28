@@ -1,6 +1,6 @@
 from loguru import logger
 
-from full_api.api.exceptions.math import DivisaoPorZeroException
+from api.exceptions.math import DivisaoPorZeroException
 
 
 def dobro(valor: float) -> float:

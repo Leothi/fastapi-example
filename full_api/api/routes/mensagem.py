@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Query
 from loguru import logger
 
-from full_api.api.models.mensagem import MensagemResponse
-from full_api.api.modules import mensagem as modulo_mensagem
+from api.models.mensagem import MensagemResponse
+from api.modules import mensagem as modulo_mensagem
 
 
 router = APIRouter()

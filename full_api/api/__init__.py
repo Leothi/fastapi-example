@@ -5,11 +5,11 @@ from fastapi.staticfiles import StaticFiles
 from loguru import logger
 from starlette.middleware.cors import CORSMiddleware
 
-from full_api.api.routes import mensagem, math, usuario, documentacao
-from full_api.api.models import DEFAULT_RESPONSES_JSON
-from full_api.api.modules.default.middleware import Middleware
-from full_api.api.exceptions import ExceptionHandler
-from full_api.api.settings import envs
+from api.routes import mensagem, math, usuario, documentacao
+from api.models import DEFAULT_RESPONSES_JSON
+from api.modules.default.middleware import Middleware
+from api.exceptions import ExceptionHandler
+from api.settings import envs
 
 __version__ = '1.0.0'
 
@@ -56,8 +56,8 @@ app.include_router(usuario.router, prefix='/usuario',
 
 # Documentação
 app.include_router(documentacao.router)
-app.mount("/_static", StaticFiles(directory="full_api/doc_sphinx/_build/html/_static"), name="static")
-app.mount("/pages", StaticFiles(directory="full_api/doc_sphinx/_build/html/pages"), name="pages")
+app.mount("/_static", StaticFiles(directory="doc_sphinx/_build/html/_static"), name="static")
+app.mount("/pages", StaticFiles(directory="doc_sphinx/_build/html/pages"), name="pages")
 
 # Módulos da API
 Middleware(app)

@@ -1,9 +1,9 @@
 from fastapi import APIRouter, Path, Query
 from loguru import logger
 
-from full_api.api.models.usuario import (UserBase, UserInsertResponse,
+from api.models.usuario import (UserBase, UserInsertResponse,
                                      UserSearchResponse, UserListResponse)
-from full_api.api.modules import usuario as modulo_usuario
+from api.modules import usuario as modulo_usuario
 
 
 router = APIRouter()

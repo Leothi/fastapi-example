@@ -1,7 +1,7 @@
 import os
 
 from pydantic import BaseSettings
-from full_api.api.utils.logger import DEFAULT_FORMAT
+from api.utils.logger import DEFAULT_FORMAT
 
 
 class EnvironmentVariables(BaseSettings):

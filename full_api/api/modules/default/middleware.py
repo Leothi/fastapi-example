@@ -3,8 +3,8 @@ from time import perf_counter
 
 from fastapi import FastAPI, Request
 
-from full_api.api.settings import envs
-from full_api.api.utils.logger import log_request
+from api.settings import envs
+from api.utils.logger import log_request
 
 
 class Middleware:

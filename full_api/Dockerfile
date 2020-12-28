@@ -12,4 +12,4 @@ COPY . /code
 
 RUN pip3 install .
 
-CMD ["gunicorn", "-k", "uvicorn.workers.UvicornWorker", "-c", "full_api.api/settings.py", "full_api.api:app"]
+CMD ["gunicorn", "-k", "uvicorn.workers.UvicornWorker", "-c", "api/settings.py", "api:app"]

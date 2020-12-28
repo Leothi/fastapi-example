@@ -1,8 +1,8 @@
 from loguru import logger
 
-from full_api.api.database.default.sql_alchemy.connector import Connector
-from full_api.api.database.default.mongo.usuario import UsuarioMongoDatabase
-from full_api.api.database.default.sql_alchemy.usuario import UsuarioSQLDatabase
+from api.database.default.sql_alchemy.connector import Connector
+from api.database.default.mongo.usuario import UsuarioMongoDatabase
+from api.database.default.sql_alchemy.usuario import UsuarioSQLDatabase
 
 
 def list_(skip: int = 0, limit: int = None, count: bool = False):
