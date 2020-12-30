@@ -11,7 +11,7 @@ from api.modules.default.middleware import Middleware
 from api.exceptions import ExceptionHandler
 from api.settings import envs
 
-__version__ = '1.0.0'
+__version__ = '1.0.1'
 
 # Configuração do Logger
 logger.configure(
