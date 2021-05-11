@@ -30,14 +30,12 @@ class UsuarioMongoDatabase(MongoDatabase):
         result = self.collection.find().skip(skip)
         if limit:
             result = result.limit(limit)
-            
+
         if count:
             return {"total": result.count()}
         else:
             return list(map(self.objectid_dict_to_str, result))
-    
-    
-    
+
     def search(self, id: str) -> dict:
         """Busca um usuário no banco.
 

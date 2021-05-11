@@ -1,5 +1,5 @@
 from pydantic import BaseModel, Field
-from typing import Optional, List, Union, Dict
+from typing import Optional, List, Union
 
 from api.models import SuccessResponse
 
@@ -20,7 +20,7 @@ class UserPasswordResponse(BaseModel):
     job: Optional[str] = Field("", description="Trabalho do usuário",
                                example="Pedreiro")
 
-    
+
 class UserMongoResponse(UserPasswordResponse):
     """Response model to /mongo/search"""
     id: str = Field(..., description="Id da inserção no banco", example=" 5fbd697275d61b32f5e503b5", alias='_id')
@@ -30,11 +30,12 @@ class UserListCountResponse(BaseModel):
     """Response model to /mongo/list"""
     total: int = Field(..., description="Contagem do total de inserções.")
 
-    
+
 class UserListResponse(BaseModel):
     """Response model to /mongo/list"""
     usuarios: Union[UserListCountResponse,
                     List[Optional[UserMongoResponse]]]
+
     class Config:
         schema_extra = {
             "example": {
@@ -58,4 +59,3 @@ class UserInsertResponse(SuccessResponse):
 class UserSearchResponse(SuccessResponse):
     """Response model to /mongo/search"""
     usuario: UserPasswordResponse
-

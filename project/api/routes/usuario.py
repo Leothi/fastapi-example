@@ -2,7 +2,7 @@ from fastapi import APIRouter, Path, Query
 from loguru import logger
 
 from api.models.usuario import (UserBase, UserInsertResponse,
-                                     UserSearchResponse, UserListResponse)
+                                UserSearchResponse, UserListResponse)
 from api.modules import usuario as modulo_usuario
 
 

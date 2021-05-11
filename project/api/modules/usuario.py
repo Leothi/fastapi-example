@@ -16,7 +16,7 @@ def list_(skip: int = 0, limit: int = None, count: bool = False):
     :type count: bool, optional
     :return: Contagem de todas as inserções ou as inserções em si
     :rtype: int ou list
-    """    
+    """
     with UsuarioMongoDatabase() as db:
         logger.info("Realizando listagem do banco de dados.")
         result = db.list_(skip, limit, count)
