@@ -10,6 +10,7 @@ class EnvironmentVariables(BaseSettings):
     FASTAPI_PORT: int = 8080
     FASTAPI_RELOAD: bool = False
     FASTAPI_ACCESS_LOG: bool = False
+    FASTAPI_ROOT_PATH: str
 
     # MongoDB
     MONGODB_URI: str = 'mongodb://root:toor@mongodb:27017/'
@@ -24,6 +25,7 @@ class EnvironmentVariables(BaseSettings):
     LOGGER_IGNORE: str = '/docs /redoc /openapi.json /metrics /health /favicon.ico / /# /_static/perfil_ico.png /_static/perfil.png'
     LOGURU_FORMAT: str = DEFAULT_FORMAT
     LOG_LOCAL: bool = False
+    LOG_LEVEL: int = 10
 
 
 envs = EnvironmentVariables()

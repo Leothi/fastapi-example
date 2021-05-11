@@ -34,8 +34,10 @@ logger.add("./logs/teste.log", level=0, format=envs.LOGURU_FORMAT, rotation='500
 logger.add("./logs/teste_error.log", level=40, format=envs.LOGURU_FORMAT, rotation='500.MB')
 
 # Instância API
-app = FastAPI(title='API de teste', description="Api para treinamento de FastAPI",
-              version=__version__)
+app = FastAPI(title='API de teste',
+              description="Api para treinamento de FastAPI",
+              version=__version__,
+              root_path=envs.FASTAPI_ROOT_PATH)
 
 # CORS
 app.add_middleware(
