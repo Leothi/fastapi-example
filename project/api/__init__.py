@@ -11,14 +11,14 @@ from api.modules.default.middleware import Middleware
 from api.exceptions import ExceptionHandler
 from api.settings import envs
 
-__version__ = '1.0.1'
+__version__ = '1.0.0'
 
 # Configuração do Logger
 logger.configure(
     handlers=[
         {
             "sink": sys.stdout,
-            "level": 10,
+            "level": envs.LOG_LEVEL,
             "format": envs.LOGURU_FORMAT
         }
     ]
